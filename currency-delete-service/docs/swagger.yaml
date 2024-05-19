@@ -1,0 +1,54 @@
+info:
+  contact:
+    email: support@swagger.io
+    name: API Support
+    url: http://www.swagger.io/support
+  description: A web service that, upon request, collects data from the public API
+    of the national bank and saves the data to the local TEST database
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  termsOfService: http://swagger.io/terms/
+  title: Swagger kursRates API
+  version: "0.1"
+paths:
+  /currency/{date}/{code}:
+    delete:
+      consumes:
+      - application/json
+      description: Delete currency data for a specific date and currency code.
+      parameters:
+      - description: Date in DD.MM.YYYY format
+        in: path
+        name: date
+        required: true
+        type: string
+      - description: Currency code (e.g., USD)
+        in: path
+        name: code
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Deleted data
+          schema:
+            additionalProperties: true
+            type: object
+        "400":
+          description: Failed to parse the date
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Failed to retrieve data
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Delete currency data by date and code
+      tags:
+      - currency
+swagger: "2.0"

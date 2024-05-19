@@ -1,0 +1,42 @@
+syntax = "proto3";
+
+package currency;
+
+option go_package = "/;generated";
+
+service CurrencyService {
+  rpc GetCurrency(GetCurrencyRequest) returns (GetCurrencyResponse);
+  rpc DeleteCurrency(DeleteCurrencyRequest) returns (DeleteCurrencyResponse);
+  rpc SaveCurrency(SaveCurrencyRequest) returns (SaveCurrencyResponse);
+}
+
+message GetCurrencyRequest {
+  string date = 1;
+  string code = 2;
+}
+
+message GetCurrencyResponse {
+  string date = 1;
+  string code = 2;
+  double rate = 3;
+}
+
+message DeleteCurrencyRequest {
+  string date = 1;
+  string code = 2;
+}
+
+message DeleteCurrencyResponse {
+  bool success = 1;
+}
+
+message SaveCurrencyRequest {
+    string title = 1;
+    string code = 2;
+    double value = 3;
+    string date = 4;
+}
+
+message SaveCurrencyResponse {
+  bool success = 1;
+}
